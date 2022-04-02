@@ -35,6 +35,10 @@ def findSlots(driver):
     for timeSlot in timeSlots:
         try:
             timeSlot.click()
+
+            """
+            You need to press confirm twice to make a reservation. This part (the complete button) is not stable. You can comment it out so the webdriver does not try to confirm the reservation. At this point, the driver already "locked in" a time slot, and you have 5 minutes to complete the reservation yourself.
+            """
             completeButton = WebDriverWait(driver, timeout).until(lambda d: d.find_element(by=By.CSS_SELECTOR,value="[id$=btnConfirmer]"))
             completeButton.click()
             driver.wait = WebDriverWait(driver, timeout)
